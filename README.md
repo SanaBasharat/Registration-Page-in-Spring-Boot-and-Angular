@@ -7,3 +7,6 @@ You must have the following:<br/>
 Maven<br/>
 Angular 12<br/>
 JDK<br/>
+
+I'm getting the following error:
+<img src="https://github.com/SanaBasharat/Registration-Page-in-Spring-Boot-and-Angular/blob/main/error.PNG">
