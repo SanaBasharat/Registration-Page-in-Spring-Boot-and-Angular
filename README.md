@@ -7,4 +7,3 @@ You must have the following:<br/>
 Maven<br/>
 Angular 12<br/>
 JDK<br/>
-MySQL database called springbootproj<br/>
