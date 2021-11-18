@@ -10,6 +10,8 @@ import org.apache.tomcat.jni.Status;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 // import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,17 +22,19 @@ import com.firstproject.demo.model.User;
 
 @CrossOrigin(origins = "http://localhost:4200/")
 @RestController
-// @RequestMapping(value = "/users" , method = RequestMethod.GET)
 public class TestController {
     private List<User> Users = createList();
 
-	// @GetMapping(produces = "application/json")
+	@ModelAttribute
+    public void setResponseHeader(HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:4200/");
+		response.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
+		response.setHeader("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
+    }
+	
+	@GetMapping(produces = "application/json")
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
-	@GetMapping("/server-http-response")
-	public List<User> firstPage(HttpServletResponse response) {
-		response.addHeader("Access-Control-Allow-Origin", "http://localhost:4200/");
-		response.addHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
-		response.addHeader("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
+	public List<User> firstPage() {
 		return Users;
 	}
 	
